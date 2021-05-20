@@ -10,7 +10,7 @@ function FormBuilder() {
   });
   const [isFormValid, setIsFormValid] = useState(false);
 
-  console.log(payrollQueryForm);
+  const mockUserEmail = "mail@example.org";
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +19,7 @@ function FormBuilder() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    window.location.href = `mailto:mail@example.org?subject=${
+    window.location.href = `mailto:${mockUserEmail}?subject=${
       payrollQueryForm.title + " - " + newPayrollQuery.queryType
     }&body=${newPayrollQuery.queryBody}`;
 
@@ -44,8 +44,6 @@ function FormBuilder() {
     )
       setIsFormValid(true);
   }, [newPayrollQuery]);
-
-  console.log(isFormValid);
 
   return (
     <div className="app-container">
