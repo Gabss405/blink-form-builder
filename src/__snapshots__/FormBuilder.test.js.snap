@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="app-container"
+  >
+    <header
+      class="form-header"
+      data-testid="header"
+    >
+      Payroll Enquiry
+    </header>
+    <form
+      class="form-body"
+    >
+      <p
+        class="form-description"
+      >
+        Please use this form for any Payroll related enquiries.
+      </p>
+      <p
+        class="form-query-type-label"
+      >
+        What does your query relate to?
+      </p>
+      <select
+        class="form-query-select"
+        data-testid="queryType"
+        name="queryType"
+        required=""
+      >
+        <option
+          class="form-query-select"
+          value=""
+        >
+          Select an option
+        </option>
+        <option
+          value="Incorrect Pay"
+        >
+          Incorrect Pay
+        </option>
+        <option
+          value="Missing Expense"
+        >
+          Missing Expense
+        </option>
+        <option
+          value="Change of Bank Details"
+        >
+          Change of Bank Details
+        </option>
+        <option
+          value="Change of Address"
+        >
+          Change of Address
+        </option>
+        <option
+          value="Other"
+        >
+          Other
+        </option>
+      </select>
+      <p>
+        Date of payslip being queried (if applicable)
+      </p>
+      <input
+        class="form-date-select"
+        name="queryDate"
+        type="date"
+      />
+      <p>
+        Query
+      </p>
+      <textarea
+        class="form-query-body"
+        data-testid="queryBody"
+        name="queryBody"
+        placeholder="Enter more information here..."
+        required=""
+        type="text"
+      />
+      <div
+        class="btn-container"
+      >
+        <button
+          class="btn-disabled"
+          data-testid="submit"
+          disabled=""
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

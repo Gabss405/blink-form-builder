@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Payroll Enquiry",
+  "description": "Please use this form for any Payroll related enquiries.",
+  "type": "object",
+  "required": ["queryType", "queryBody"],
+  "properties": {
+    "queryType": {
+      "description": "What does your query relate to?",
+      "type": "array",
+      "items": [
+        "Incorrect Pay",
+        "Missing Expense",
+        "Change of Bank Details",
+        "Change of Address",
+        "Other"
+      ]
+    },
+    "date": {
+      "type": "date",
+      "title": "Date of payslip being queried (if applicable)"
+    },
+    "queryBody": {
+      "type": "string",
+      "maxLength": 150
+    }
+  }
+}
