@@ -41,6 +41,10 @@
   font-size: 1.5rem;
 }
 
+.form-query-select-default {
+  opacity: 0.5;
+}
+
 .form-query-body {
   width: 100%;
   min-height: 20vh;

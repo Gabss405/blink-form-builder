@@ -19,30 +19,31 @@ function FormBuilder() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    window.location.href = `mailto:${mockUserEmail}?subject=${
-      payrollQueryForm.title + " - " + newPayrollQuery.queryType
-    }&body=${newPayrollQuery.queryBody}`;
-
     //wasn't sure what this means: "the submit button should log an html string of an email body that could be sent to the form's recipient"
-    //console.log(`<body>${newPayrollQuery.queryBody}</body>`);
+    window.open(
+      `mailto:${mockUserEmail}?subject=${
+        payrollQueryForm.title + " - " + newPayrollQuery.queryType
+      }&body=${newPayrollQuery.queryBody}`,
+      "_blank"
+    );
+    console.log(`<body>${newPayrollQuery.queryBody}</body>`);
   };
 
   useEffect(() => {
-    //this definitely needs refactoring but it works:
-    if (
+    const queryTypeRequiresDate =
       newPayrollQuery.queryType === "Missing Expense" ||
-      newPayrollQuery.queryType === "Incorrect Pay"
-    ) {
-      if (
-        newPayrollQuery.queryDate.length > 0 &&
-        newPayrollQuery.queryBody.length > 0
-      )
-        setIsFormValid(true);
-    } else if (
-      newPayrollQuery.queryType.length > 0 &&
-      newPayrollQuery.queryBody.length > 0
-    )
-      setIsFormValid(true);
+      newPayrollQuery.queryType === "Incorrect Pay";
+
+    const queryDateAndBodyValid =
+      (newPayrollQuery.queryDate.length > 0) &
+      (newPayrollQuery.queryBody.length > 0);
+
+    const queryTypeNoDateRequired =
+      !queryTypeRequiresDate & (newPayrollQuery.queryBody.length > 0);
+
+    if (queryTypeRequiresDate & queryDateAndBodyValid) setIsFormValid(true);
+    else if (queryTypeNoDateRequired) setIsFormValid(true);
+    else setIsFormValid(false);
   }, [newPayrollQuery]);
 
   return (
@@ -51,7 +52,7 @@ function FormBuilder() {
         {payrollQueryForm.title ? payrollQueryForm.title : "Untitled Form"}
       </header>
       <form className="form-body" onSubmit={handleFormSubmit}>
-        <p className="form-description">
+        <p className="form-description" data-testid="form-description">
           {payrollQueryForm?.description && payrollQueryForm.description}
         </p>
         <p className="form-query-type-label">
@@ -64,7 +65,7 @@ function FormBuilder() {
           data-testid="queryType"
           required={payrollQueryForm.required.includes("queryType")}
         >
-          <option className="form-query-select" value="">
+          <option className="form-query-select-default" value="">
             Select an option
           </option>
           {payrollQueryForm.properties.queryType.items.map((item, idx) => {
@@ -81,6 +82,7 @@ function FormBuilder() {
           type="date"
           name="queryDate"
           onChange={handleFormChange}
+          data-testid="queryDate"
           required={
             newPayrollQuery.queryType === "Missing Expense" ||
             newPayrollQuery.queryType === "Incorrect Pay"

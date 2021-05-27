@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should take a snapshot 1`] = `
+exports[`<FormBuilder> rendering should match snapshot 1`] = `
 <DocumentFragment>
   <div
     class="app-container"
@@ -16,6 +16,7 @@ exports[`should take a snapshot 1`] = `
     >
       <p
         class="form-description"
+        data-testid="form-description"
       >
         Please use this form for any Payroll related enquiries.
       </p>
@@ -31,7 +32,7 @@ exports[`should take a snapshot 1`] = `
         required=""
       >
         <option
-          class="form-query-select"
+          class="form-query-select-default"
           value=""
         >
           Select an option
@@ -67,6 +68,7 @@ exports[`should take a snapshot 1`] = `
       </p>
       <input
         class="form-date-select"
+        data-testid="queryDate"
         name="queryDate"
         type="date"
       />
